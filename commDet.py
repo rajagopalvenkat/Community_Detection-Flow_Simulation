@@ -37,6 +37,9 @@ numrank=sorted(numrank, key=itemgetter(1))
 degrank=sorted(degrank, key=itemgetter(1))
 
 seeds=float(sys.argv[2])
+'''
+Enter seeds = 1-(k/100)
+'''
 
 numrank=numrank[int(len(numrank)*seeds):]
 degrank=degrank[int(len(degrank)*seeds):]
