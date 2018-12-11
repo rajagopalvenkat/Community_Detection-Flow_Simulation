@@ -35,7 +35,21 @@ FP=0
 TN=0
 FN=0
 
+FPR=[]
+FNR=[]
+X=[]
+
 while count<=10000:
+	X+=[count,]
+	if FP>0:
+		FPR+=[FP/float(FP+TN),]
+	else:
+		FPR+=[0,]
+	if FN>0:
+		FNR+=[FN/float(FN+TP),]
+	else:
+		FNR+=[0,]
+	
 	count+=1
 	if random.uniform(0,1)<=0.5: 				# Choose Positive
 		key=random.sample(C.keys(),1)[0]
@@ -69,8 +83,9 @@ while count<=10000:
 		else:
 			TN+=1
 
-
-print("TP : ", TP)
-print("FP : ", FP)
-print("TN : ", TN)
-print("FN : ", FN)
+plt.plot(X, FPR)
+plt.plot(X, FNR)
+plt.legend(("False Positive Rate", "False Negative Rate"))
+plt.title(sys.argv[3])
+plt.ylim(0,1)
+plt.show()
